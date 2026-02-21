@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=393, initial-scale=1.0">
+  <title>Wellness.AI — AI Response</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    body { background: #E5E7EB; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .app-shell { max-width: 393px; width: 393px; height: 852px; border-radius: 40px; box-shadow: var(--shadow-xl); overflow: hidden; position: relative; background: linear-gradient(180deg, #FFFFFF 0%, #D1DDD6 55%, #A8BFB0 100%); display: flex; flex-direction: column; }
+    .header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; padding-top: 59px; }
+    .header__menu { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: none; background: none; color: #162E22; }
+    .header__title { font-size: 18px; font-weight: 700; color: #162E22; letter-spacing: -0.02em; font-family: 'Inter', sans-serif; }
+    .header__action { width: 36px; height: 36px; border-radius: 9999px; background: #162E22; color: #fff; border: none; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .chat-body { flex: 1; display: flex; flex-direction: column; padding: 0 20px; overflow-y: auto; padding-bottom: 130px; }
+    .audio-player { display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: #D1FAE5; border-radius: 20px; margin-top: 12px; margin-bottom: 16px; }
+    .audio-player__play { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: none; background: none; color: #162E22; }
+    .audio-player__time { font-size: 13px; font-weight: 500; color: #162E22; font-family: 'Inter', sans-serif; }
+    .waveform-mini { display: flex; align-items: center; gap: 1.5px; height: 20px; flex: 1; }
+    .waveform-mini .bar { width: 2px; border-radius: 9999px; background: #162E22; opacity: 0.35; }
+    .bubble-ai { padding: 20px; background: #1B3C2D; border-radius: 24px; color: #fff; margin-top: 8px; }
+    .bubble-ai__label { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px; color: #6EE7A0; font-family: 'Inter', sans-serif; }
+    .bubble-ai__label .dot { width: 8px; height: 8px; border-radius: 9999px; background: #4ADE80; }
+    .bubble-ai p { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.9); margin-bottom: 12px; font-family: 'Inter', sans-serif; }
+    .bubble-ai h4 { font-size: 13px; font-weight: 600; color: #fff; margin-top: 16px; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+    .bubble-ai ul { list-style: none; padding-left: 16px; margin-top: 8px; }
+    .bubble-ai ul li { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.85); padding-left: 12px; position: relative; margin-bottom: 4px; font-family: 'Inter', sans-serif; }
+    .bubble-ai ul li::before { content: ''; position: absolute; left: 0; top: 9px; width: 4px; height: 4px; border-radius: 9999px; background: #4ADE80; }
+    .input-bar { padding: 12px 20px; padding-bottom: 46px; background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%); backdrop-filter: blur(40px); border-radius: 0 0 40px 40px; }
+    .input-bar__field { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: #fff; border: 1px solid #E5E7EB; border-radius: 20px; margin-bottom: 8px; }
+    .input-bar__field input { flex: 1; border: none; outline: none; font-size: 13px; color: #162E22; background: transparent; font-family: 'Inter', sans-serif; }
+    .input-bar__field input::placeholder { color: #9CA3AF; }
+    .input-bar__actions { display: flex; align-items: center; gap: 12px; padding: 4px 8px; }
+    .input-bar__icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border: none; background: none; color: #162E22; opacity: 0.6; }
+    .input-bar__send { width: 42px; height: 42px; border-radius: 9999px; background: #34D399; color: #fff; border: none; display: flex; align-items: center; justify-content: center; margin-left: auto; }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <div class="header">
+    <button class="header__menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="15" y2="12"></line>
+        <line x1="3" y1="18" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <span class="header__title">Wellness.AI</span>
+    <button class="header__action">+</button>
+  </div>
+
+  <div class="chat-body">
+    <div class="audio-player">
+      <button class="audio-player__play">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+      <span class="audio-player__time">00:30</span>
+      <div class="waveform-mini" id="miniWaveform"></div>
+    </div>
+
+    <div class="bubble-ai">
+      <div class="bubble-ai__label">
+        <span class="dot"></span>
+        Wellness Guide
+      </div>
+      <p>I hear you. Feeling disconnected is more common than you think, and it's a beautiful sign that your inner self is calling for attention.</p>
+      <p>Here are three practices to reconnect with your Mind, Body, and Soul:</p>
+
+      <h4>1. Morning Stillness Practice (Mind)</h4>
+      <p>Start each day with 5 minutes of silent sitting. Don't try to meditate — just be present.</p>
+      <ul>
+        <li>Find a quiet corner</li>
+        <li>Close your eyes gently</li>
+        <li>Notice your breath without changing it</li>
+        <li>Let thoughts pass like clouds</li>
+      </ul>
+
+      <h4>2. Body Scan Walk (Body)</h4>
+      <p>Take a 10-minute walk shifting attention through each body part — feet, legs, hips, spine, shoulders, head.</p>
+
+      <h4>3. Gratitude Letter to Self (Soul)</h4>
+      <p>Write a short letter about three things you appreciate about who you are. Not what you do — who you are.</p>
+    </div>
+  </div>
+
+  <div class="input-bar">
+    <div class="input-bar__field">
+      <input type="text" placeholder="Ask for deeper guidance...">
+    </div>
+    <div class="input-bar__actions">
+      <button class="input-bar__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      </button>
+      <button class="input-bar__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+      </button>
+      <button class="input-bar__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </button>
+      <button class="input-bar__send">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const wf = document.getElementById('miniWaveform');
+  for (let i = 0; i < 45; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.height = (Math.random() * 14 + 3) + 'px';
+    wf.appendChild(bar);
+  }
+</script>
+</body>
+</html>

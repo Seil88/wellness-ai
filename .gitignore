@@ -1,0 +1,25 @@
+node_modules/
+.expo/
+.npm-cache/
+ios/
+android/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+dist/
+
+# macOS
+.DS_Store
+
+# env
+.env
+.env.local
+
+# Python
+__pycache__/
+*.pyc
+.venv/

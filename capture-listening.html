@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=393, initial-scale=1.0">
+  <title>Wellness.AI — Listening</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    body { background: #E5E7EB; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .app-shell { max-width: 393px; width: 393px; height: 852px; border-radius: 40px; box-shadow: var(--shadow-xl); overflow: hidden; position: relative; background: #FFFFFF; display: flex; flex-direction: column; }
+    .header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; padding-top: 59px; }
+    .header__menu { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: none; background: none; color: #162E22; }
+    .header__title { font-size: 18px; font-weight: 700; color: #162E22; letter-spacing: -0.02em; font-family: 'Inter', sans-serif; }
+    .header__action { width: 36px; height: 36px; border-radius: 9999px; background: #162E22; color: #fff; border: none; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .content { flex: 1; padding: 0 24px; padding-top: 16px; }
+    .status-badge { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; background: #F3F4F6; border-radius: 9999px; font-size: 11px; font-weight: 500; color: #162E22; font-family: 'Inter', sans-serif; }
+    .status-badge .dot { width: 8px; height: 8px; border-radius: 9999px; background: #4ADE80; }
+    .transcript { margin-top: 16px; }
+    .transcript p { font-size: 28px; font-weight: 700; line-height: 1.25; color: #D1D5DB; font-family: 'Inter', sans-serif; }
+    .transcript .current { color: #162E22; }
+    .bottom { display: flex; flex-direction: column; align-items: center; padding-bottom: 68px; padding-top: 24px; background: #fff; }
+    .waveform-visual { display: flex; align-items: center; justify-content: center; gap: 2px; height: 36px; width: 300px; }
+    .waveform-visual .bar { width: 2.5px; border-radius: 9999px; background: #162E22; }
+    .voice-timer { font-size: 13px; font-weight: 500; color: #4B5563; margin-top: 16px; margin-bottom: 16px; font-family: 'Inter', sans-serif; font-variant-numeric: tabular-nums; }
+    .voice-btn { width: 72px; height: 72px; border-radius: 9999px; background: #34D399; border: none; display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <div class="header">
+    <button class="header__menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="15" y2="12"></line>
+        <line x1="3" y1="18" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <span class="header__title">Wellness.AI</span>
+    <button class="header__action">+</button>
+  </div>
+
+  <div class="content">
+    <div class="status-badge">
+      <span class="dot"></span>
+      Listening...
+    </div>
+    <div class="transcript">
+      <p>
+        <span>Hey, Wellness AI </span>
+        <span>I've been feeling </span>
+        <span>disconnected lately. </span>
+        <span class="current">How can I reconnect with my inner self?</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="waveform-visual" id="waveform"></div>
+    <div class="voice-timer">00:30</div>
+    <button class="voice-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  const container = document.getElementById('waveform');
+  for (let i = 0; i < 60; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    const h = Math.random() * 28 + 4;
+    bar.style.height = h + 'px';
+    container.appendChild(bar);
+  }
+</script>
+</body>
+</html>

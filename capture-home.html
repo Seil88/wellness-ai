@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=393, initial-scale=1.0">
+  <title>Wellness.AI — Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    body { background: #E5E7EB; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .app-shell { max-width: 393px; width: 393px; height: 852px; border-radius: 40px; box-shadow: var(--shadow-xl); overflow: hidden; position: relative; background: linear-gradient(180deg, #FFFFFF 0%, #D1DDD6 55%, #A8BFB0 100%); display: flex; flex-direction: column; }
+    .header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; padding-top: 59px; }
+    .header__menu { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: none; background: none; color: #162E22; }
+    .header__title { font-size: 18px; font-weight: 700; color: #162E22; letter-spacing: -0.02em; font-family: 'Inter', sans-serif; }
+    .header__action { width: 36px; height: 36px; border-radius: 9999px; background: #162E22; color: #fff; border: none; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .content { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 24px; margin-bottom: 100px; }
+    .ai-orb { width: 64px; height: 64px; border-radius: 9999px; background: radial-gradient(circle, #4ADE80 0%, #A7F3D0 40%, transparent 70%); box-shadow: 0 0 30px rgba(74,222,128,0.35); }
+    h2 { font-size: 28px; font-weight: 700; color: #162E22; text-align: center; line-height: 1.25; margin-top: 32px; font-family: 'Inter', sans-serif; }
+    .voice-area { display: flex; flex-direction: column; align-items: center; padding-bottom: 68px; padding-top: 48px; background: linear-gradient(0deg, rgba(168,191,176,0.8) 0%, transparent 100%); }
+    .voice-hint { display: inline-flex; align-items: center; padding: 8px 16px; background: rgba(107,114,128,0.15); backdrop-filter: blur(8px); border-radius: 9999px; font-size: 11px; color: #4B5563; margin-bottom: 16px; font-family: 'Inter', sans-serif; }
+    .voice-timer { font-size: 13px; font-weight: 500; color: #4B5563; margin-bottom: 16px; font-family: 'Inter', sans-serif; }
+    .voice-btn { width: 72px; height: 72px; border-radius: 9999px; background: #fff; border: 3px solid #4ADE80; display: flex; align-items: center; justify-content: center; color: #34D399; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <div class="header">
+    <button class="header__menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="15" y2="12"></line>
+        <line x1="3" y1="18" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <span class="header__title">Wellness.AI</span>
+    <button class="header__action">+</button>
+  </div>
+  <div class="content">
+    <div class="ai-orb"></div>
+    <h2>Tell me what's<br>on your mind</h2>
+  </div>
+  <div class="voice-area">
+    <div class="voice-hint">Tap below to begin voice input</div>
+    <div class="voice-timer">00:00</div>
+    <button class="voice-btn">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+        <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+        <line x1="12" y1="19" x2="12" y2="23"/>
+        <line x1="8" y1="23" x2="16" y2="23"/>
+      </svg>
+    </button>
+  </div>
+</div>
+</body>
+</html>

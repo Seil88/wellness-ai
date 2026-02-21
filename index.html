@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Wellness.AI — Mind Body Soul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <style>
+    /* ─── APP-SPECIFIC STYLES ─── */
+
+    .app-shell {
+      background: var(--gradient-bg);
+    }
+
+    /* ── Screen: Welcome ── */
+    .screen-welcome {
+      background: var(--gradient-bg);
+      padding: var(--safe-area-top) var(--space-6) var(--safe-area-bottom);
+      justify-content: flex-start;
+    }
+
+    .screen-welcome .logo {
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-16);
+    }
+
+    .screen-welcome h1 {
+      font-size: var(--text-3xl);
+      font-weight: var(--font-bold);
+      color: var(--color-primary-800);
+      line-height: var(--leading-tight);
+      margin-bottom: var(--space-10);
+    }
+
+    .screen-welcome .form-group {
+      margin-bottom: var(--space-8);
+    }
+
+    .screen-welcome .btn-primary {
+      width: 100%;
+    }
+
+    .screen-welcome .btn-outline {
+      width: 100%;
+    }
+
+    .screen-welcome .divider {
+      text-align: center;
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+      margin: var(--space-4) 0;
+    }
+
+    .screen-welcome .login-link {
+      text-align: center;
+      font-size: var(--text-sm);
+      color: var(--color-gray-500);
+      margin-top: var(--space-5);
+    }
+
+    .screen-welcome .login-link a {
+      color: var(--color-primary-800);
+      font-weight: var(--font-bold);
+      text-decoration: none;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      margin-left: var(--space-2);
+    }
+
+    .screen-welcome .footer-links {
+      margin-top: auto;
+      padding-top: var(--space-8);
+    }
+
+    /* ── Screen: Interests ── */
+    .screen-interests {
+      background: var(--gradient-bg);
+      padding: var(--safe-area-top) var(--space-6) var(--safe-area-bottom);
+    }
+
+    .screen-interests .logo {
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-10);
+    }
+
+    .screen-interests h1 {
+      font-size: var(--text-3xl);
+      font-weight: var(--font-bold);
+      color: var(--color-primary-800);
+      line-height: var(--leading-tight);
+      margin-bottom: var(--space-2);
+    }
+
+    .screen-interests .subtitle {
+      font-size: var(--text-base);
+      color: var(--color-gray-500);
+      margin-bottom: var(--space-8);
+    }
+
+    .chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-bottom: var(--space-10);
+    }
+
+    .screen-interests .btn-primary {
+      align-self: center;
+      min-width: 200px;
+    }
+
+    .screen-interests .bottom-area {
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      padding-bottom: var(--space-6);
+    }
+
+    /* ── Screen: Home (Main Voice) ── */
+    .screen-home {
+      background: var(--gradient-bg);
+    }
+
+    .screen-home .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 var(--space-6);
+      padding-bottom: 200px;
+    }
+
+    .screen-home h2 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-bold);
+      color: var(--color-primary-800);
+      text-align: center;
+      line-height: var(--leading-snug);
+      margin-top: var(--space-8);
+    }
+
+    .screen-home .voice-area {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: var(--mobile-width);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: calc(var(--space-8) + var(--safe-area-bottom));
+      background: linear-gradient(0deg, rgba(168,191,176,0.8) 0%, transparent 100%);
+      padding-top: var(--space-12);
+    }
+
+    .voice-hint {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-2) var(--space-4);
+      background: rgba(107, 114, 128, 0.15);
+      backdrop-filter: blur(var(--blur-sm));
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      color: var(--color-gray-600);
+      margin-bottom: var(--space-4);
+    }
+
+    .voice-timer {
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      color: var(--color-gray-600);
+      margin-bottom: var(--space-4);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Screen: Listening ── */
+    .screen-listening {
+      background: var(--color-white);
+    }
+
+    .screen-listening .content {
+      flex: 1;
+      padding: 0 var(--space-6);
+      padding-top: var(--space-4);
+      padding-bottom: 220px;
+    }
+
+    .screen-listening .transcript {
+      margin-top: var(--space-4);
+    }
+
+    .screen-listening .transcript p {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-bold);
+      line-height: var(--leading-snug);
+      color: var(--color-gray-300);
+    }
+
+    .screen-listening .transcript p .current {
+      color: var(--color-primary-800);
+    }
+
+    .listening-bottom {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: var(--mobile-width);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: calc(var(--space-6) + var(--safe-area-bottom));
+      padding-top: var(--space-6);
+      background: var(--color-white);
+    }
+
+    /* ── Screen: Chat ── */
+    .screen-chat {
+      background: var(--gradient-bg);
+    }
+
+    .screen-chat .chat-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 0 var(--space-5);
+      padding-bottom: calc(var(--input-bar-height) + var(--safe-area-bottom) + var(--space-4));
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .chat-greeting {
+      margin-top: var(--space-4);
+      margin-bottom: var(--space-2);
+    }
+
+    .chat-greeting .ai-orb--sm {
+      margin-bottom: var(--space-4);
+    }
+
+    .chat-greeting h2 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-bold);
+      color: var(--color-primary-800);
+      line-height: var(--leading-tight);
+      margin-bottom: var(--space-3);
+    }
+
+    .chat-greeting p {
+      font-size: var(--text-xl);
+      font-weight: var(--font-regular);
+      color: var(--color-gray-400);
+      line-height: var(--leading-snug);
+    }
+
+    .suggestions-row {
+      display: flex;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: var(--space-2);
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .suggestions-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .suggestions-row .suggestion-card {
+      min-width: 170px;
+      flex-shrink: 0;
+    }
+
+    .chat-messages {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+
+    /* ── Screen: Response (Chat with AI reply) ── */
+    .screen-response {
+      background: var(--gradient-bg);
+    }
+
+    .screen-response .chat-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 0 var(--space-5);
+      padding-bottom: calc(var(--input-bar-height) + var(--safe-area-bottom) + var(--space-4));
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .screen-response .audio-player {
+      margin-top: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .screen-response .bubble-ai {
+      margin-top: var(--space-2);
+    }
+
+    .response-actions {
+      display: flex;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+
+    .response-action-btn {
+      padding: var(--space-2) var(--space-4);
+      background: var(--gradient-frosted);
+      backdrop-filter: blur(var(--blur-md));
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: var(--radius-lg);
+      font-family: var(--font-family-primary);
+      font-size: var(--text-xs);
+      font-weight: var(--font-medium);
+      color: var(--color-primary-800);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+
+    .response-action-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* ── AI Typing dots ── */
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .typing-indicator span {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: var(--color-gray-300);
+      animation: typingDot 1.4s var(--ease-in-out) infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typingDot {
+      0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+      30% { opacity: 1; transform: translateY(-4px); }
+    }
+
+    /* ── Waveform bars generation ── */
+    .waveform-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      height: 36px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .waveform-visual .bar {
+      width: 2.5px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-800);
+      transition: height 0.1s ease;
+    }
+
+    /* ── Transitions between screens ── */
+    .screen {
+      will-change: opacity, transform;
+    }
+
+    .screen.slide-out {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+
+    /* ── Smooth scroll for chat ── */
+    .chat-body {
+      scroll-behavior: smooth;
+    }
+
+    /* ── Bullet list in AI response ── */
+    .bubble-ai ul {
+      list-style: none;
+      padding-left: var(--space-4);
+      margin-top: var(--space-2);
+    }
+
+    .bubble-ai ul li {
+      font-size: var(--text-sm);
+      line-height: var(--leading-relaxed);
+      color: rgba(255, 255, 255, 0.85);
+      padding-left: var(--space-3);
+      position: relative;
+      margin-bottom: var(--space-1);
+    }
+
+    .bubble-ai ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 4px;
+      height: 4px;
+      border-radius: var(--radius-full);
+      background: var(--color-accent-400);
+    }
+
+    .bubble-ai h4 {
+      font-size: var(--text-sm);
+      font-weight: var(--font-semibold);
+      color: var(--color-white);
+      margin-top: var(--space-4);
+      margin-bottom: var(--space-2);
+    }
+
+    /* ── Nav dots (onboarding indicator) ── */
+    .nav-dots {
+      display: flex;
+      gap: var(--space-2);
+      justify-content: center;
+      margin-top: var(--space-6);
+    }
+
+    .nav-dots .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: var(--color-gray-300);
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .nav-dots .dot.active {
+      width: 24px;
+      background: var(--color-primary-800);
+    }
+
+    /* ── Animate in elements ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.6s var(--ease-out) forwards;
+      opacity: 0;
+    }
+
+    .animate-in:nth-child(1) { animation-delay: 0s; }
+    .animate-in:nth-child(2) { animation-delay: 0.1s; }
+    .animate-in:nth-child(3) { animation-delay: 0.2s; }
+    .animate-in:nth-child(4) { animation-delay: 0.3s; }
+    .animate-in:nth-child(5) { animation-delay: 0.4s; }
+
+    /* ── Section titles in response ── */
+    .section-title {
+      font-size: var(--text-base);
+      font-weight: var(--font-bold);
+      color: var(--color-white);
+      margin-bottom: var(--space-2);
+    }
+
+    /* ── Settings overlay ── */
+    .settings-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(var(--blur-sm));
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .settings-overlay.active {
+      display: flex;
+    }
+
+    .settings-panel {
+      width: 90%;
+      max-width: 360px;
+      background: var(--color-white);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .settings-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-5);
+    }
+
+    .settings-header h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-bold);
+      color: var(--color-primary-800);
+    }
+
+    .settings-close {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: none;
+      font-size: var(--text-xl);
+      cursor: pointer;
+      color: var(--color-gray-500);
+    }
+
+    .settings-status {
+      margin-top: var(--space-3);
+      font-size: var(--text-sm);
+      min-height: 20px;
+    }
+
+    .settings-status.success { color: var(--color-accent-500); }
+    .settings-status.error { color: #EF4444; }
+
+    /* ── Error bubble ── */
+    .bubble-error {
+      max-width: 92%;
+      padding: var(--space-4) var(--space-5);
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      border-radius: var(--radius-xl);
+      font-size: var(--text-sm);
+      color: #DC2626;
+      align-self: flex-start;
+    }
+
+    /* ── Streaming cursor ── */
+    .streaming-cursor::after {
+      content: '▊';
+      animation: blink 0.7s step-end infinite;
+      color: var(--color-accent-400);
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* ── Desktop preview wrapper ── */
+    @media (min-width: 500px) {
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: var(--color-gray-200);
+      }
+
+      .app-shell {
+        max-width: var(--mobile-width);
+        min-height: var(--mobile-height);
+        height: var(--mobile-height);
+        border-radius: 40px;
+        box-shadow: var(--shadow-xl);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .screen {
+        min-height: var(--mobile-height);
+      }
+
+      .voice-area,
+      .listening-bottom,
+      .input-bar {
+        border-radius: 0 0 40px 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-shell" id="app">
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN 1: WELCOME / LOGIN
+       ═══════════════════════════════════════════ -->
+  <div class="screen screen-welcome active" id="screen-welcome">
+    <div class="logo animate-in">
+      <div class="logo__orb"></div>
+      <span class="logo__text">Wellness.AI</span>
+    </div>
+
+    <h1 class="animate-in">Welcome to<br>your journey</h1>
+
+    <div class="form-group animate-in">
+      <label class="form-label">Email address</label>
+      <input type="email" class="form-input" placeholder="your@email.com" id="emailInput">
+    </div>
+
+    <button class="btn-primary animate-in" onclick="navigateTo('screen-interests')">
+      Start Your Journey +
+    </button>
+
+    <div class="login-link animate-in">
+      Already have an account? <a href="#" onclick="navigateTo('screen-interests')">Log In</a>
+    </div>
+
+    <div class="divider">or</div>
+
+    <button class="btn-outline animate-in" onclick="navigateTo('screen-interests')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 001 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+      Continue with Google
+    </button>
+
+    <div class="footer-links">
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN 2: INTERESTS SELECTION
+       ═══════════════════════════════════════════ -->
+  <div class="screen screen-interests" id="screen-interests">
+    <div class="logo animate-in">
+      <div class="logo__orb"></div>
+      <span class="logo__text">Wellness.AI</span>
+    </div>
+
+    <h1 class="animate-in">Discover your<br>inner path</h1>
+    <p class="subtitle animate-in">Choose up to 5 interests to get started</p>
+
+    <div class="chips-grid animate-in" id="chipsGrid">
+      <button class="chip" data-topic="Meditation">Meditation</button>
+      <button class="chip" data-topic="Breathwork">Breathwork</button>
+      <button class="chip" data-topic="Yoga">Yoga</button>
+      <button class="chip" data-topic="Mindfulness">Mindfulness</button>
+      <button class="chip" data-topic="Journaling">Journaling</button>
+      <button class="chip" data-topic="Sleep">Sleep</button>
+      <button class="chip" data-topic="Emotional Healing">Emotional Healing</button>
+      <button class="chip" data-topic="Self-Discovery">Self-Discovery</button>
+      <button class="chip" data-topic="Stress Relief">Stress Relief</button>
+      <button class="chip" data-topic="Nutrition">Nutrition</button>
+      <button class="chip" data-topic="Gratitude">Gratitude</button>
+      <button class="chip" data-topic="Spiritual Growth">Spiritual Growth</button>
+      <button class="chip" data-topic="Energy Work">Energy Work</button>
+      <button class="chip" data-topic="Body Awareness">Body Awareness</button>
+    </div>
+
+    <div class="nav-dots animate-in">
+      <div class="dot"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+    </div>
+
+    <div class="bottom-area">
+      <button class="btn-primary" id="continueBtn" onclick="navigateTo('screen-home')">
+        Continue +
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN 3: HOME / VOICE PROMPT
+       ═══════════════════════════════════════════ -->
+  <div class="screen screen-home" id="screen-home">
+    <div class="header">
+      <button class="header__menu" onclick="navigateTo('screen-chat')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="15" y2="12"></line>
+          <line x1="3" y1="18" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <span class="header__title">Wellness.AI</span>
+      <button class="header__action" onclick="navigateTo('screen-chat')">+</button>
+    </div>
+
+    <div class="content">
+      <div class="ai-orb"></div>
+      <h2>Tell me what's<br>on your mind</h2>
+    </div>
+
+    <div class="voice-area">
+      <div class="voice-hint">Tap below to begin voice input</div>
+      <div class="voice-timer" id="voiceTimer">00:00</div>
+      <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+          <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+          <line x1="12" y1="19" x2="12" y2="23"/>
+          <line x1="8" y1="23" x2="16" y2="23"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN 4: LISTENING (VOICE ACTIVE)
+       ═══════════════════════════════════════════ -->
+  <div class="screen screen-listening" id="screen-listening">
+    <div class="header">
+      <button class="header__menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="15" y2="12"></line>
+          <line x1="3" y1="18" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <span class="header__title">Wellness.AI</span>
+      <button class="header__action">+</button>
+    </div>
+
+    <div class="content">
+      <div class="status-badge">
+        <span class="dot"></span>
+        Listening...
+      </div>
+
+      <div class="transcript" id="transcriptArea">
+        <p id="transcriptText">
+          <span class="current">Listening for your voice...</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="listening-bottom">
+      <div class="waveform-visual" id="waveform">
+        <!-- bars injected by JS -->
+      </div>
+      <div class="voice-timer" style="margin-top: var(--space-4);">00:30</div>
+      <button class="voice-btn recording" onclick="stopVoiceAndShowResponse()">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+          <rect x="6" y="6" width="12" height="12" rx="2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN 5: CHAT (Text-based)
+       ═══════════════════════════════════════════ -->
+  <div class="screen screen-chat" id="screen-chat">
+    <div class="header">
+      <button class="header__menu" onclick="openSettings()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="15" y2="12"></line>
+          <line x1="3" y1="18" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <span class="header__title">Wellness.AI</span>
+      <button class="header__action" onclick="resetChat()">+</button>
+    </div>
+
+    <div class="chat-body" id="chatBody">
+      <div class="chat-greeting">
+        <div class="ai-orb ai-orb--sm"></div>
+        <h2>Good morning<br>Ready to explore?</h2>
+        <p>What would you like to focus on today? I can guide you on your path.</p>
+      </div>
+
+      <div class="suggestions-row">
+        <div class="suggestion-card" onclick="sendSuggestion('Guide me through a mindfulness meditation')">
+          Guide me through a mindfulness meditation
+        </div>
+        <div class="suggestion-card" onclick="sendSuggestion('Help me understand my emotions better')">
+          Help me understand my emotions better
+        </div>
+        <div class="suggestion-card" onclick="sendSuggestion('Create a daily wellness routine for me')">
+          Create a daily wellness routine
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <!-- messages injected by JS -->
+      </div>
+    </div>
+
+    <div class="input-bar" id="chatInputBar">
+      <div class="input-bar__field">
+        <input type="text" placeholder="Share what's on your mind..." id="chatInput" onkeydown="if(event.key==='Enter')sendMessage()">
+      </div>
+      <div class="input-bar__actions">
+        <button class="input-bar__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+        </button>
+        <button class="input-bar__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+          </svg>
+        </button>
+        <button class="input-bar__icon" onclick="navigateTo('screen-home')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+            <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+        </button>
+        <button class="input-bar__send" onclick="sendMessage()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       SETTINGS OVERLAY
+       ═══════════════════════════════════════════ -->
+  <div class="settings-overlay" id="settingsOverlay">
+    <div class="settings-panel">
+      <div class="settings-header">
+        <h3>Settings</h3>
+        <button class="settings-close" onclick="closeSettings()">&times;</button>
+      </div>
+      <div class="settings-body">
+        <label class="form-label">Backend URL</label>
+        <input type="text" class="form-input" id="settingsBackendUrl" placeholder="http://localhost:8000">
+        <div class="settings-status" id="settingsStatus"></div>
+        <div style="display:flex; gap: var(--space-3); margin-top: var(--space-6);">
+          <button class="btn-outline" style="flex:1; min-height:44px; font-size: var(--text-sm);" onclick="testConnection()">Test Connection</button>
+          <button class="btn-primary" style="flex:1; min-height:44px; font-size: var(--text-sm);" onclick="saveSettings()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN 6: AI RESPONSE (detailed reply)
+       ═══════════════════════════════════════════ -->
+  <div class="screen screen-response" id="screen-response">
+    <div class="header">
+      <button class="header__menu" onclick="navigateTo('screen-chat')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="15" y2="12"></line>
+          <line x1="3" y1="18" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <span class="header__title">Wellness.AI</span>
+      <button class="header__action" onclick="navigateTo('screen-chat')">+</button>
+    </div>
+
+    <div class="chat-body">
+      <!-- User's voice message -->
+      <div class="audio-player" style="margin-top: var(--space-3);">
+        <button class="audio-player__play">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <polygon points="5,3 19,12 5,21"/>
+          </svg>
+        </button>
+        <span class="audio-player__time">00:30</span>
+        <div class="waveform-visual" style="flex:1; max-width: none; height: 24px;">
+        </div>
+      </div>
+
+      <!-- AI Response -->
+      <div class="bubble-ai animate-in">
+        <div class="bubble-ai__label">
+          <span class="dot"></span>
+          Wellness Guide
+        </div>
+
+        <p>I hear you. Feeling disconnected is more common than you think, and it's actually a beautiful sign that your inner self is calling for attention.</p>
+
+        <p>Here are three practices to help you reconnect with your Mind, Body, and Soul:</p>
+
+        <h4>1. Morning Stillness Practice (Mind)</h4>
+        <p>Start each day with 5 minutes of silent sitting. Don't try to meditate — just be present with whatever arises.</p>
+        <ul>
+          <li>Find a quiet corner</li>
+          <li>Close your eyes gently</li>
+          <li>Notice your breath without changing it</li>
+          <li>Let thoughts pass like clouds</li>
+        </ul>
+
+        <h4>2. Body Scan Walk (Body)</h4>
+        <p>Take a 10-minute walk and slowly shift attention through each body part — feet, legs, hips, spine, shoulders, head.</p>
+
+        <h4>3. Gratitude Letter to Self (Soul)</h4>
+        <p>Write a short letter to yourself about three things you appreciate about who you are. Not what you do — who you are.</p>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="response-actions animate-in">
+        <button class="response-action-btn" onclick="navigateTo('screen-chat')">Try another practice</button>
+        <button class="response-action-btn" onclick="navigateTo('screen-chat')">Save to journal</button>
+      </div>
+
+      <!-- Follow-up input -->
+      <div style="height: calc(var(--input-bar-height) + var(--safe-area-bottom) + var(--space-8));"></div>
+    </div>
+
+    <div class="input-bar">
+      <div class="input-bar__field">
+        <input type="text" placeholder="Ask for deeper guidance..." id="responseInput" onkeydown="if(event.key==='Enter')navigateTo('screen-chat')">
+      </div>
+      <div class="input-bar__actions">
+        <button class="input-bar__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+        </button>
+        <button class="input-bar__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+          </svg>
+        </button>
+        <button class="input-bar__icon" onclick="navigateTo('screen-home')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+            <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+        </button>
+        <button class="input-bar__send" onclick="navigateTo('screen-chat')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+  // ─── GLOBALS ───
+  let BACKEND_URL = localStorage.getItem('wellness_backend_url') || 'http://localhost:8000';
+  let conversationHistory = [];
+  let currentAbortController = null;
+  let isAiResponding = false;
+
+  // Voice
+  let isRecording = false;
+  let voiceInterval = null;
+  let voiceSeconds = 0;
+  let speechRecognition = null;
+  let voiceTranscript = '';
+
+  // ─── NAVIGATION ───
+  function navigateTo(screenId) {
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(s => {
+      s.classList.remove('active');
+      s.classList.add('slide-out');
+    });
+
+    setTimeout(() => {
+      screens.forEach(s => s.classList.remove('slide-out'));
+      const target = document.getElementById(screenId);
+      if (target) {
+        target.classList.add('active');
+        target.querySelectorAll('.animate-in').forEach(el => {
+          el.style.animation = 'none';
+          el.offsetHeight;
+          el.style.animation = '';
+        });
+      }
+    }, 250);
+  }
+
+  // ─── CHIP SELECTION ───
+  const chipsGrid = document.getElementById('chipsGrid');
+  let selectedChips = [];
+
+  if (chipsGrid) {
+    chipsGrid.addEventListener('click', (e) => {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+      const topic = chip.dataset.topic;
+      if (chip.classList.contains('selected')) {
+        chip.classList.remove('selected');
+        selectedChips = selectedChips.filter(t => t !== topic);
+      } else {
+        if (selectedChips.length >= 5) return;
+        chip.classList.add('selected');
+        selectedChips.push(topic);
+      }
+    });
+  }
+
+  // ─── SETTINGS ───
+  function openSettings() {
+    const overlay = document.getElementById('settingsOverlay');
+    const input = document.getElementById('settingsBackendUrl');
+    input.value = BACKEND_URL;
+    overlay.classList.add('active');
+    document.getElementById('settingsStatus').textContent = '';
+    document.getElementById('settingsStatus').className = 'settings-status';
+  }
+
+  function closeSettings() {
+    document.getElementById('settingsOverlay').classList.remove('active');
+  }
+
+  function saveSettings() {
+    const input = document.getElementById('settingsBackendUrl');
+    const url = input.value.trim().replace(/\/+$/, '');
+    if (!url) return;
+    BACKEND_URL = url;
+    localStorage.setItem('wellness_backend_url', url);
+    const status = document.getElementById('settingsStatus');
+    status.textContent = 'Saved!';
+    status.className = 'settings-status success';
+    setTimeout(closeSettings, 800);
+  }
+
+  async function testConnection() {
+    const input = document.getElementById('settingsBackendUrl');
+    const url = input.value.trim().replace(/\/+$/, '');
+    const status = document.getElementById('settingsStatus');
+    status.textContent = 'Testing...';
+    status.className = 'settings-status';
+    try {
+      const resp = await fetch(`${url}/api/health`);
+      const data = await resp.json();
+      if (data.status === 'ok') {
+        status.textContent = `Connected — model: ${data.model}`;
+        status.className = 'settings-status success';
+      } else {
+        status.textContent = data.detail || 'Model unreachable';
+        status.className = 'settings-status error';
+      }
+    } catch (e) {
+      status.textContent = `Cannot reach server: ${e.message}`;
+      status.className = 'settings-status error';
+    }
+  }
+
+  // ─── MARKDOWN RENDERER ───
+  function renderMarkdown(text) {
+    // Escape HTML
+    let html = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // Bold
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+    // Split into lines for block-level processing
+    const lines = html.split('\n');
+    let result = [];
+    let inList = false;
+    let listType = null; // 'ul' or 'ol'
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const ulMatch = line.match(/^[\-\*]\s+(.+)/);
+      const olMatch = line.match(/^\d+\.\s+(.+)/);
+
+      if (ulMatch) {
+        if (!inList || listType !== 'ul') {
+          if (inList) result.push(listType === 'ol' ? '</ol>' : '</ul>');
+          result.push('<ul>');
+          inList = true;
+          listType = 'ul';
+        }
+        result.push(`<li>${ulMatch[1]}</li>`);
+      } else if (olMatch) {
+        if (!inList || listType !== 'ol') {
+          if (inList) result.push(listType === 'ol' ? '</ol>' : '</ul>');
+          result.push('<ol>');
+          inList = true;
+          listType = 'ol';
+        }
+        result.push(`<li>${olMatch[1]}</li>`);
+      } else {
+        if (inList) {
+          result.push(listType === 'ol' ? '</ol>' : '</ul>');
+          inList = false;
+          listType = null;
+        }
+        const trimmed = line.trim();
+        if (trimmed === '') {
+          // blank line — paragraph break
+        } else if (trimmed.startsWith('###')) {
+          result.push(`<h4>${trimmed.replace(/^###\s*/, '')}</h4>`);
+        } else if (trimmed.startsWith('##')) {
+          result.push(`<h4>${trimmed.replace(/^##\s*/, '')}</h4>`);
+        } else if (trimmed.startsWith('#')) {
+          result.push(`<h4>${trimmed.replace(/^#\s*/, '')}</h4>`);
+        } else {
+          result.push(`<p>${trimmed}</p>`);
+        }
+      }
+    }
+    if (inList) result.push(listType === 'ol' ? '</ol>' : '</ul>');
+
+    return result.join('');
+  }
+
+  // ─── STREAMING AI ───
+  function createStreamingAiBubble() {
+    const container = document.getElementById('chatMessages');
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble-ai animate-in';
+    bubble.innerHTML = '<div class="bubble-ai__label"><span class="dot"></span> Wellness Guide</div><div class="ai-stream-content streaming-cursor"></div>';
+    container.appendChild(bubble);
+    scrollChat();
+    return bubble.querySelector('.ai-stream-content');
+  }
+
+  function addErrorMessage(text) {
+    const container = document.getElementById('chatMessages');
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble-error animate-in';
+    bubble.textContent = text;
+    container.appendChild(bubble);
+    scrollChat();
+  }
+
+  async function streamAiResponse(userMessage) {
+    if (isAiResponding) return;
+    isAiResponding = true;
+
+    conversationHistory.push({ role: 'user', content: userMessage });
+
+    const contentEl = createStreamingAiBubble();
+    let accumulated = '';
+
+    currentAbortController = new AbortController();
+
+    try {
+      const resp = await fetch(`${BACKEND_URL}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: conversationHistory,
+          stream: true,
+        }),
+        signal: currentAbortController.signal,
+      });
+
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.error || `Server error (${resp.status})`);
+      }
+
+      const reader = resp.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop();
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const dataStr = line.slice(6).trim();
+          if (!dataStr) continue;
+
+          try {
+            const data = JSON.parse(dataStr);
+            if (data.error) {
+              contentEl.classList.remove('streaming-cursor');
+              addErrorMessage(data.error);
+              isAiResponding = false;
+              return;
+            }
+            if (data.done) break;
+            if (data.token) {
+              accumulated += data.token;
+              contentEl.textContent = accumulated;
+              scrollChat();
+            }
+          } catch (e) {
+            // skip malformed chunks
+          }
+        }
+      }
+
+      // Streaming complete — render markdown
+      contentEl.classList.remove('streaming-cursor');
+      contentEl.innerHTML = renderMarkdown(accumulated);
+      conversationHistory.push({ role: 'assistant', content: accumulated });
+
+    } catch (e) {
+      contentEl.classList.remove('streaming-cursor');
+      if (e.name === 'AbortError') {
+        contentEl.innerHTML = '<p><em>Response cancelled</em></p>';
+      } else {
+        // Remove the empty AI bubble
+        contentEl.closest('.bubble-ai')?.remove();
+        addErrorMessage(`Could not reach AI: ${e.message}. Check Settings → Test Connection.`);
+      }
+    } finally {
+      isAiResponding = false;
+      currentAbortController = null;
+      scrollChat();
+    }
+  }
+
+  // ─── CHAT ───
+  function addUserMessage(text) {
+    const container = document.getElementById('chatMessages');
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble-user animate-in';
+    bubble.textContent = text;
+    container.appendChild(bubble);
+    scrollChat();
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text || isAiResponding) return;
+    input.value = '';
+    addUserMessage(text);
+    await streamAiResponse(text);
+  }
+
+  async function sendSuggestion(text) {
+    if (isAiResponding) return;
+    addUserMessage(text);
+    await streamAiResponse(text);
+  }
+
+  function scrollChat() {
+    const body = document.getElementById('chatBody');
+    if (body) {
+      setTimeout(() => { body.scrollTop = body.scrollHeight; }, 50);
+    }
+  }
+
+  function resetChat() {
+    if (currentAbortController) currentAbortController.abort();
+    isAiResponding = false;
+    conversationHistory = [];
+    const container = document.getElementById('chatMessages');
+    if (container) container.innerHTML = '';
+  }
+
+  // ─── VOICE (Web Speech API) ───
+  // Detect if running inside a WebView (WKWebView doesn't support Speech API reliably)
+  function isWebView() {
+    const ua = navigator.userAgent || '';
+    return /Mobile/.test(ua) && !/Safari/.test(ua) || /ReactNative|Expo/.test(ua);
+  }
+
+  function toggleVoice() {
+    const btn = document.getElementById('voiceBtn');
+    const timer = document.getElementById('voiceTimer');
+
+    if (!isRecording) {
+      // Check browser support — WKWebView defines it but it doesn't work
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition || isWebView()) {
+        // Fall back to text chat
+        navigateTo('screen-chat');
+        setTimeout(() => {
+          document.getElementById('chatInput')?.focus();
+        }, 400);
+        return;
+      }
+
+      isRecording = true;
+      btn.classList.add('recording');
+      voiceSeconds = 0;
+      voiceTranscript = '';
+      let startFailCount = 0;
+
+      // Update transcript display
+      const transcriptText = document.getElementById('transcriptText');
+      if (transcriptText) {
+        transcriptText.innerHTML = '<span class="current">Listening for your voice...</span>';
+      }
+
+      // Start timer
+      voiceInterval = setInterval(() => {
+        voiceSeconds++;
+        const m = Math.floor(voiceSeconds / 60).toString().padStart(2, '0');
+        const s = (voiceSeconds % 60).toString().padStart(2, '0');
+        timer.textContent = `${m}:${s}`;
+      }, 1000);
+
+      // Start speech recognition
+      speechRecognition = new SpeechRecognition();
+      speechRecognition.continuous = true;
+      speechRecognition.interimResults = true;
+      speechRecognition.lang = 'en-US';
+
+      speechRecognition.onresult = (event) => {
+        let interim = '';
+        let final = '';
+        for (let i = 0; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+          if (event.results[i].isFinal) {
+            final += transcript + ' ';
+          } else {
+            interim += transcript;
+          }
+        }
+        voiceTranscript = final;
+        updateTranscriptDisplay(final, interim);
+      };
+
+      speechRecognition.onerror = (event) => {
+        if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+          stopVoice();
+          navigateTo('screen-chat');
+          return;
+        }
+        if (event.error !== 'no-speech') {
+          console.warn('Speech recognition error:', event.error);
+        }
+      };
+
+      speechRecognition.onend = () => {
+        // Restart if still recording (browser may auto-stop)
+        if (isRecording && speechRecognition) {
+          startFailCount++;
+          // If it keeps ending immediately, speech API is broken — bail out
+          if (startFailCount > 3) {
+            stopVoice();
+            navigateTo('screen-chat');
+            return;
+          }
+          try { speechRecognition.start(); } catch(e) {}
+        }
+      };
+
+      speechRecognition.start();
+
+      // Navigate to listening screen after short delay
+      setTimeout(() => {
+        navigateTo('screen-listening');
+      }, 600);
+    } else {
+      stopVoice();
+    }
+  }
+
+  function updateTranscriptDisplay(finalText, interimText) {
+    const transcriptEl = document.getElementById('transcriptText');
+    if (!transcriptEl) return;
+
+    let html = '';
+    if (finalText) {
+      html += `<span>${finalText}</span>`;
+    }
+    if (interimText) {
+      html += `<span class="current">${interimText}</span>`;
+    }
+    if (!finalText && !interimText) {
+      html = '<span class="current">Listening for your voice...</span>';
+    }
+    transcriptEl.innerHTML = html;
+  }
+
+  function stopVoice() {
+    isRecording = false;
+    clearInterval(voiceInterval);
+    const btn = document.getElementById('voiceBtn');
+    if (btn) btn.classList.remove('recording');
+    if (speechRecognition) {
+      speechRecognition.onend = null; // prevent auto-restart
+      speechRecognition.stop();
+      speechRecognition = null;
+    }
+  }
+
+  async function stopVoiceAndShowResponse() {
+    const transcript = voiceTranscript.trim();
+    stopVoice();
+
+    if (transcript) {
+      navigateTo('screen-chat');
+      // Small delay to let screen transition complete
+      setTimeout(async () => {
+        addUserMessage(transcript);
+        await streamAiResponse(transcript);
+      }, 400);
+    } else {
+      // No speech detected — just go back home
+      navigateTo('screen-home');
+    }
+  }
+
+  // ─── WAVEFORM ───
+  function generateWaveform() {
+    const container = document.getElementById('waveform');
+    if (!container) return;
+    for (let i = 0; i < 60; i++) {
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      bar.style.height = (Math.random() * 28 + 4) + 'px';
+      container.appendChild(bar);
+    }
+    setInterval(() => {
+      container.querySelectorAll('.bar').forEach(bar => {
+        bar.style.height = (Math.random() * 28 + 4) + 'px';
+      });
+    }, 150);
+  }
+
+  function generateStaticWaveforms() {
+    document.querySelectorAll('.waveform-visual').forEach(container => {
+      if (container.children.length > 0) return;
+      for (let i = 0; i < 50; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        bar.style.height = (Math.random() * 16 + 3) + 'px';
+        bar.style.background = 'currentColor';
+        bar.style.opacity = '0.4';
+        container.appendChild(bar);
+      }
+    });
+  }
+
+  // ─── INIT ───
+  document.addEventListener('DOMContentLoaded', () => {
+    generateWaveform();
+    generateStaticWaveforms();
+
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=393, initial-scale=1.0">
+  <title>Wellness.AI — Interests</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <style>
+    body { background: #E5E7EB; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .app-shell { max-width: 393px; width: 393px; height: 852px; border-radius: 40px; box-shadow: var(--shadow-xl); overflow: hidden; position: relative; background: var(--gradient-bg); }
+    .screen-interests { background: var(--gradient-bg); padding: 59px 24px 34px; display: flex; flex-direction: column; min-height: 852px; }
+    .screen-interests .logo { display: flex; align-items: center; gap: 8px; margin-top: 32px; margin-bottom: 80px; }
+    .logo__orb { width: 20px; height: 20px; border-radius: 9999px; background: radial-gradient(circle, #4ADE80 0%, #A7F3D0 40%, transparent 70%); box-shadow: 0 0 30px rgba(74,222,128,0.35); }
+    .logo__text { font-size: 22px; font-weight: 700; color: #162E22; letter-spacing: -0.02em; }
+    h1 { font-size: 32px; font-weight: 700; color: #162E22; line-height: 1.15; margin-bottom: 8px; }
+    .subtitle { font-size: 15px; color: #6B7280; margin-bottom: 32px; }
+    .chips-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+    .chip { display: inline-flex; align-items: center; padding: 8px 16px; border: 1.5px solid #D1D5DB; border-radius: 9999px; font-size: 13px; font-weight: 500; color: #162E22; background: transparent; cursor: pointer; min-height: 40px; font-family: 'Inter', sans-serif; }
+    .chip.selected { background: #162E22; border-color: #162E22; color: #fff; }
+    .bottom-area { margin-top: auto; display: flex; justify-content: center; padding-bottom: 24px; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 32px; background: #34D399; color: #fff; border: none; border-radius: 9999px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; min-height: 52px; min-width: 200px; font-family: 'Inter', sans-serif; }
+    .nav-dots { display: flex; gap: 8px; justify-content: center; margin-top: 24px; }
+    .nav-dots .dot { width: 8px; height: 8px; border-radius: 9999px; background: #D1D5DB; }
+    .nav-dots .dot.active { width: 24px; background: #162E22; }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <div class="screen-interests">
+    <div class="logo">
+      <div class="logo__orb"></div>
+      <span class="logo__text">Wellness.AI</span>
+    </div>
+    <h1>Discover your<br>inner path</h1>
+    <p class="subtitle">Choose up to 5 interests to get started</p>
+    <div class="chips-grid">
+      <button class="chip selected">Meditation</button>
+      <button class="chip">Breathwork</button>
+      <button class="chip">Yoga</button>
+      <button class="chip selected">Mindfulness</button>
+      <button class="chip">Journaling</button>
+      <button class="chip">Sleep</button>
+      <button class="chip">Emotional Healing</button>
+      <button class="chip selected">Self-Discovery</button>
+      <button class="chip">Stress Relief</button>
+      <button class="chip">Nutrition</button>
+      <button class="chip">Gratitude</button>
+      <button class="chip selected">Spiritual Growth</button>
+      <button class="chip">Energy Work</button>
+      <button class="chip selected">Body Awareness</button>
+    </div>
+    <div class="nav-dots">
+      <div class="dot"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="bottom-area">
+      <button class="btn-primary">Continue +</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
